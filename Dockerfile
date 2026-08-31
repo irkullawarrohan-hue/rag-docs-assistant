@@ -8,6 +8,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+RUN python ingestion/ingest.py
+
 EXPOSE 8000
 EXPOSE 8501
 
