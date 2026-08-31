@@ -1,8 +1,7 @@
 from pathlib import Path
 
-from sentence_transformers import SentenceTransformer
 import chromadb
-
+from sentence_transformers import SentenceTransformer
 
 DOCS_DIR = Path("docs")
 CHROMA_DIR = "chroma_db"

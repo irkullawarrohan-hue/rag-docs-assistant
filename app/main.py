@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from app.rag import search_documents, generate_answer
 
+from app.rag import generate_answer, search_documents
 
 app = FastAPI(title="RAG Docs Assistant")
 
