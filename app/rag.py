@@ -12,10 +12,6 @@ collection = client.get_collection(
     name="devops_docs"
 )
 
-groq_client = Groq(
-    api_key=os.getenv("GROQ_API_KEY")
-)
-
 
 def search_documents(query: str, n_results: int = 2):
     results = collection.query(
@@ -36,6 +32,10 @@ def search_documents(query: str, n_results: int = 2):
 
 
 def generate_answer(query: str):
+    groq_client = Groq(
+        api_key=os.getenv("GROQ_API_KEY")
+    )
+
     documents = search_documents(query)
 
     context = "\n\n".join(
