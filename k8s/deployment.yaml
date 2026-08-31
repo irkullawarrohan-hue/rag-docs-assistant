@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rag-docs-assistant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rag-docs-assistant
+  template:
+    metadata:
+      labels:
+        app: rag-docs-assistant
+    spec:
+      containers:
+        - name: rag-docs-assistant
+          image: ghcr.io/irkullawarrohan-hue/rag-docs-assistant:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+            - containerPort: 8501
+          env:
+            - name: GROQ_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: rag-docs-secret
+                  key: GROQ_API_KEY

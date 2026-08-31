@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rag-docs-assistant
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: rag-docs.local
+      http:
+        paths:
+          - path: /ask
+            pathType: Prefix
+            backend:
+              service:
+                name: rag-docs-assistant
+                port:
+                  number: 8000
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: rag-docs-assistant
+                port:
+                  number: 8501
